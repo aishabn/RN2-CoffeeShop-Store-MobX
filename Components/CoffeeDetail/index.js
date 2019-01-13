@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { observer } from "mobx-react";
 // NativeBase Components
 import {
   Thumbnail,
@@ -17,8 +17,8 @@ import {
 // Style
 import styles from "./styles";
 
-//List
-import coffeeshops from "../CoffeeList/list";
+//Store
+import coffeeStore from "../../Stores/coffeeStore";
 
 class CoffeeDetail extends Component {
   constructor(props) {
@@ -42,8 +42,8 @@ class CoffeeDetail extends Component {
   }
 
   render() {
-    if (!coffeeshops) return <Content />;
-    const coffeeshop = coffeeshops[0];
+    if (!coffeeStore.coffeeshops) return <Content />;
+    const coffeeshop = coffeeStore.coffeeshops;
     return (
       <Content>
         <List>
@@ -96,4 +96,4 @@ class CoffeeDetail extends Component {
   }
 }
 
-export default CoffeeDetail;
+export default observer(CoffeeDetail);
